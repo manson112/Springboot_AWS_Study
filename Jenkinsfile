@@ -10,7 +10,11 @@ pipeline {
     stage('Build') {
       steps {
         sh 'java -version' 
-        tool 'gradle'
+        dir ('.'){
+            sh """
+            ./gradlew clean build --exclude-task test
+            """
+        }
       }
     }
 
