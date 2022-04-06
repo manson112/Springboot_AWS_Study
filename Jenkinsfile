@@ -9,7 +9,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        tool 'gradle'
+        tool 'gradle7'
       }
     }
 
