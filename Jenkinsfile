@@ -10,7 +10,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'java -version' 
-        tool 'gradle7'
+        tool 'gradle'
       }
     }
 
