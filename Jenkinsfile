@@ -14,6 +14,7 @@ pipeline {
             sh """
             ./gradlew clean build --exclude-task test
             """
+
         }
       }
     }
