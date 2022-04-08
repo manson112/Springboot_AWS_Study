@@ -8,6 +8,11 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "ok";
+        return "TEST1 OK";
+    }
+
+    @PostMapping("/test2")
+    public String test2() {
+	return "TEST2 OK";
     }
 }
