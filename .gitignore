@@ -3,3 +3,5 @@
 .build
 .idea
 /build/classes/java/main/
+/out/
+/build
