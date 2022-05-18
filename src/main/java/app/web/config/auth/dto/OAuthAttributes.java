@@ -4,10 +4,12 @@ import app.web.domain.user.Role;
 import app.web.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
 @Getter
+@Slf4j
 public class OAuthAttributes {
     private Map<String, Object> attributes;
     private String nameAttributeKey;
@@ -25,7 +27,24 @@ public class OAuthAttributes {
     }
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
+        log.error("of :: attributes :: {}", attributes.toString());
+        if("naver".equals(registrationId)) {
+            return ofNaver("id", attributes);
+        }
         return ofGoogle(userNameAttributeName, attributes);
+    }
+
+    private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
+        log.error("ofNaver:: resultcode :: {}", attributes.get("resultcode"));
+        log.error("ofNaver:: message :: {}", attributes.get("message"));
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+        return OAuthAttributes.builder()
+                .name((String) response.get("name"))
+                .email((String) response.get("email"))
+                .picture((String) response.get("profile_image"))
+                .attributes(response)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
     }
 
     private static OAuthAttributes ofGoogle(String userNameAttributeName, Map<String, Object> attributes) {

@@ -5,6 +5,7 @@ import app.web.config.auth.dto.SessionUser;
 import app.web.domain.user.User;
 import app.web.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -24,6 +25,7 @@ import java.util.Collections;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
     private final UserRepository userRepository;
     private final HttpSession httpSession;
@@ -39,6 +41,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         // OAuth2 로그인 진행 시 키가 되는 필드값
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
+        log.error("loadUser:: registrationId ::{}", registrationId);
+        log.error("loadUser:: userNameAttributeName ::{}", userNameAttributeName);
 
         // OAuth2User 의 attribute 를 담을 클래스
         OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
