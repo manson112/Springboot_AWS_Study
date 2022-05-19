@@ -17,7 +17,7 @@ public class IndexControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void 메인페이지_로딩() {
+    public void mainpage_loading() {
         String body = this.restTemplate.getForObject("/", String.class);
         assertThat(body).contains("스프링 부트로 시작하는 웹 서비스");
     }
