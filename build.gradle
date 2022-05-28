@@ -46,6 +46,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     implementation 'com.h2database:h2'
+
+    implementation 'org.mariadb.jdbc:mariadb-java-client'
 }
 
 test {
