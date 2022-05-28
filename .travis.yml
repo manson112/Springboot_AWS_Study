@@ -17,3 +17,19 @@ notifications:
   email:
     recipients:
       - rlarhksdn95@gmail.com
+
+before_deploy:
+  - zip -r Springboot_AWS_Study *
+  - mkdir -p deploy
+  - mv Springboot_AWS_Study.zip deploy/Springboot_AWS_Study.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: freelec-springboot-build-manson112
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait-until-deployed: true
