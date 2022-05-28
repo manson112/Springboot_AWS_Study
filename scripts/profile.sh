@@ -24,7 +24,7 @@ function find_idle_profile()
 
 }
 
-function find_idle_profile()
+function find_idle_port()
 {
   IDLE_PROFILE=$(find_idle_profile)
 
