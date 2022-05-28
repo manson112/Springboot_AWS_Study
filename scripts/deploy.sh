@@ -8,7 +8,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 애플리케이션 pid 확인"
 
-CURRENT_PID=$(pgrep -fl Springboot_AWS_Study | grep jar | awk '{print $1}' )
+CURRENT_PID=$(pgrep -fla Springboot_AWS_Study | grep jar | awk '{print $1}')
 
 echo "현재 구동중인 애플리케이션 PID: $CURRENT_PID"
 
